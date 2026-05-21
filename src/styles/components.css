@@ -495,36 +495,14 @@ p {
 }
 
 .login-mockup {
-  background:
-    radial-gradient(circle at 72% 10%, rgba(255, 212, 0, 0.18), transparent 20%),
-    linear-gradient(180deg, #173d76 0%, #0c2757 35%, #091d45 68%, #071833 100%);
+  background: transparent;
   display: flex;
   flex-direction: column;
   gap: 1rem;
   min-height: 760px;
-  overflow: hidden;
-  padding: 1.35rem 1.2rem 1.6rem;
+  padding: 0.6rem 0 0;
   position: relative;
   width: min(100%, 420px);
-}
-
-.login-mockup__notch {
-  align-self: center;
-  background: rgba(3, 9, 20, 0.92);
-  border-radius: 999px;
-  height: 22px;
-  width: 118px;
-}
-
-.login-mockup__glow {
-  background: radial-gradient(circle, rgba(255, 212, 0, 0.22), transparent 68%);
-  height: 150px;
-  left: 50%;
-  pointer-events: none;
-  position: absolute;
-  top: 0.8rem;
-  transform: translateX(-50%);
-  width: 150px;
 }
 
 .auth-panel__header {
@@ -533,10 +511,23 @@ p {
   flex-direction: column;
   gap: 0.85rem;
   justify-content: center;
-  margin-top: 0.6rem;
+  margin-top: 0;
   position: relative;
   text-align: center;
   z-index: 1;
+}
+
+.auth-panel__header::before {
+  background: radial-gradient(circle, rgba(255, 212, 0, 0.22), transparent 68%);
+  content: '';
+  height: 150px;
+  left: 50%;
+  pointer-events: none;
+  position: absolute;
+  top: -0.9rem;
+  transform: translateX(-50%);
+  width: 150px;
+  z-index: -1;
 }
 
 .auth-panel__titles strong {

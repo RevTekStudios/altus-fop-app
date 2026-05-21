@@ -11,9 +11,6 @@ export default function LoginPage({ onRequestAccess, onSignIn }) {
   return (
     <div className="auth-shell">
       <div className="login-mockup">
-        <div className="login-mockup__notch" />
-        <div className="login-mockup__glow" />
-
         <div className="auth-panel__header">
           <FopLogo showText={false} size="small" />
           <div className="auth-panel__titles">
