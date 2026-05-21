@@ -54,7 +54,7 @@
 }
 
 .auth-card {
-  width: min(100%, 480px);
+  width: min(100%, 1120px);
 }
 
 @media (max-width: 1080px) {
@@ -76,5 +76,9 @@
 
   .app-shell__main {
     padding-bottom: 6rem;
+  }
+
+  .auth-card {
+    width: min(100%, 680px);
   }
 }

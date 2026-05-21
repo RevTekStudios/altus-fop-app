@@ -22,11 +22,14 @@ const tiles = [
     '/announcements',
     <TileIcon key="announcements">
       <path
-        d="M5 7.5h14M5 12h14M5 16.5h9"
+        d="M5 13.5V10.8c0-.5.4-.9.9-.9H8l5.9-2.9c.6-.3 1.3.1 1.3.8v8.4c0 .7-.7 1.1-1.3.8L8 14.1H5.9c-.5 0-.9-.4-.9-.9Z"
         stroke="currentColor"
         strokeLinecap="round"
+        strokeLinejoin="round"
         strokeWidth="1.8"
       />
+      <path d="M8.2 14.1 9.4 17" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+      <path d="M17 9.5c.9.6 1.5 1.5 1.5 2.5s-.6 1.9-1.5 2.5" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
     </TileIcon>,
   ],
   [
@@ -192,7 +195,6 @@ export default function DashboardPage() {
             <Link className="quick-tile" key={path} to={path}>
               {icon}
               <strong>{label}</strong>
-              <span className="hero-copy">Open {label.toLowerCase()}.</span>
             </Link>
           ))}
         </div>
