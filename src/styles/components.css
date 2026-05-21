@@ -317,19 +317,46 @@ p {
 }
 
 .quick-tile {
+  align-items: center;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.015));
   border: 1px solid rgba(255, 212, 0, 0.14);
   border-radius: 22px;
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
+  justify-content: center;
   min-height: 128px;
   padding: 1rem;
+  text-align: center;
 }
 
 .quick-tile:hover {
   border-color: rgba(255, 212, 0, 0.26);
   transform: translateY(-2px);
+}
+
+.quick-tile__icon {
+  align-items: center;
+  background: linear-gradient(145deg, rgba(255, 212, 0, 0.2), rgba(255, 212, 0, 0.08));
+  border: 1px solid rgba(255, 212, 0, 0.24);
+  border-radius: 18px;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
+  color: var(--fop-gold);
+  display: inline-flex;
+  height: 52px;
+  justify-content: center;
+  margin-bottom: 0.15rem;
+  width: 52px;
+}
+
+.quick-tile__icon svg {
+  display: block;
+  height: 24px;
+  width: 24px;
+}
+
+.quick-tile strong {
+  font-size: 0.98rem;
 }
 
 .section-title {

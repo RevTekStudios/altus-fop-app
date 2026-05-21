@@ -6,15 +6,110 @@ import { mockAnnouncements } from '../data/mockAnnouncements.js';
 import { mockEvents } from '../data/mockEvents.js';
 import { mockVotes } from '../data/mockVotes.js';
 
+function TileIcon({ children }) {
+  return (
+    <span aria-hidden="true" className="quick-tile__icon">
+      <svg fill="none" viewBox="0 0 24 24">
+        {children}
+      </svg>
+    </span>
+  );
+}
+
 const tiles = [
-  ['Announcements', '/announcements'],
-  ['Calendar', '/calendar'],
-  ['Agenda', '/agenda'],
-  ['Resources', '/resources'],
-  ['Videos', '/videos'],
-  ['Gallery', '/gallery'],
-  ['Voting', '/voting'],
-  ['Messages', '/messages'],
+  [
+    'Announcements',
+    '/announcements',
+    <TileIcon key="announcements">
+      <path
+        d="M5 7.5h14M5 12h14M5 16.5h9"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="1.8"
+      />
+    </TileIcon>,
+  ],
+  [
+    'Calendar',
+    '/calendar',
+    <TileIcon key="calendar">
+      <rect height="13" rx="2.5" stroke="currentColor" strokeWidth="1.8" width="14" x="5" y="7" />
+      <path d="M8 4.5v5M16 4.5v5M5 10.5h14" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
+    </TileIcon>,
+  ],
+  [
+    'Agenda',
+    '/agenda',
+    <TileIcon key="agenda">
+      <path
+        d="M8 7h8M8 12h8M8 17h5M5.5 7h.01M5.5 12h.01M5.5 17h.01"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeWidth="1.8"
+      />
+    </TileIcon>,
+  ],
+  [
+    'Resources',
+    '/resources',
+    <TileIcon key="resources">
+      <path
+        d="M7 6.5A2.5 2.5 0 0 1 9.5 4H18v14h-8.5A2.5 2.5 0 0 0 7 20.5m0-14v14m0-14A2.5 2.5 0 0 0 4.5 9H15"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.7"
+      />
+    </TileIcon>,
+  ],
+  [
+    'Videos',
+    '/videos',
+    <TileIcon key="videos">
+      <rect height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" width="14" x="4" y="6" />
+      <path d="m11 10 4 2-4 2v-4Z" fill="currentColor" />
+    </TileIcon>,
+  ],
+  [
+    'Gallery',
+    '/gallery',
+    <TileIcon key="gallery">
+      <rect height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" width="14" x="5" y="6" />
+      <path
+        d="m8 15 2.5-2.5 2 2 2.5-3 2 3.5M10 10.5h.01"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.7"
+      />
+    </TileIcon>,
+  ],
+  [
+    'Voting',
+    '/voting',
+    <TileIcon key="voting">
+      <path
+        d="M7 8h10l-1 11H8L7 8Zm2-3h6l1 3H8l1-3Zm1.5 7 1.5 1.5 3-3"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.7"
+      />
+    </TileIcon>,
+  ],
+  [
+    'Messages',
+    '/messages',
+    <TileIcon key="messages">
+      <path
+        d="M5 7.5A2.5 2.5 0 0 1 7.5 5h9A2.5 2.5 0 0 1 19 7.5v6A2.5 2.5 0 0 1 16.5 16H10l-4 3v-3.5A2.5 2.5 0 0 1 5 13V7.5Z"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.7"
+      />
+    </TileIcon>,
+  ],
 ];
 
 export default function DashboardPage() {
@@ -93,10 +188,11 @@ export default function DashboardPage() {
           <Badge tone="highlight">Mobile-ready navigation</Badge>
         </div>
         <div className="tile-grid">
-          {tiles.map(([label, path]) => (
+          {tiles.map(([label, path, icon]) => (
             <Link className="quick-tile" key={path} to={path}>
+              {icon}
               <strong>{label}</strong>
-              <span className="hero-copy">Open the {label.toLowerCase()} workspace.</span>
+              <span className="hero-copy">Open {label.toLowerCase()}.</span>
             </Link>
           ))}
         </div>
