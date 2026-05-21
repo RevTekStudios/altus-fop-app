@@ -77,8 +77,4 @@
   .app-shell__main {
     padding-bottom: 6rem;
   }
-
-  .auth-card {
-    width: min(100%, 680px);
-  }
 }
