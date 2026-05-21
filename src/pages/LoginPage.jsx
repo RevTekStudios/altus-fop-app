@@ -5,107 +5,6 @@ import DemoNotice from '../components/DemoNotice.jsx';
 import FopLogo from '../components/FopLogo.jsx';
 import { mockLogin } from '../services/authService.js';
 
-function PreviewIcon({ children }) {
-  return (
-    <span aria-hidden="true" className="portal-preview__icon">
-      <svg fill="none" viewBox="0 0 24 24">
-        {children}
-      </svg>
-    </span>
-  );
-}
-
-const previewItems = [
-  [
-    'Announcements',
-    <PreviewIcon key="announcements">
-      <path
-        d="M5 13.5V10.8c0-.5.4-.9.9-.9H8l5.9-2.9c.6-.3 1.3.1 1.3.8v8.4c0 .7-.7 1.1-1.3.8L8 14.1H5.9c-.5 0-.9-.4-.9-.9Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.8"
-      />
-      <path d="M8.2 14.1 9.4 17" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
-      <path d="M17 9.5c.9.6 1.5 1.5 1.5 2.5s-.6 1.9-1.5 2.5" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
-    </PreviewIcon>,
-  ],
-  [
-    'Calendar',
-    <PreviewIcon key="calendar">
-      <rect height="13" rx="2.5" stroke="currentColor" strokeWidth="1.8" width="14" x="5" y="7" />
-      <path d="M8 4.5v5M16 4.5v5M5 10.5h14" stroke="currentColor" strokeLinecap="round" strokeWidth="1.8" />
-    </PreviewIcon>,
-  ],
-  [
-    'Agenda',
-    <PreviewIcon key="agenda">
-      <path
-        d="M8 7h8M8 12h8M8 17h5M5.5 7h.01M5.5 12h.01M5.5 17h.01"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeWidth="1.8"
-      />
-    </PreviewIcon>,
-  ],
-  [
-    'Resources',
-    <PreviewIcon key="resources">
-      <path
-        d="M7 6.5A2.5 2.5 0 0 1 9.5 4H18v14h-8.5A2.5 2.5 0 0 0 7 20.5m0-14v14m0-14A2.5 2.5 0 0 0 4.5 9H15"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.7"
-      />
-    </PreviewIcon>,
-  ],
-  [
-    'Gallery',
-    <PreviewIcon key="gallery">
-      <rect height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" width="14" x="5" y="6" />
-      <path
-        d="m8 15 2.5-2.5 2 2 2.5-3 2 3.5M10 10.5h.01"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.7"
-      />
-    </PreviewIcon>,
-  ],
-  [
-    'Videos',
-    <PreviewIcon key="videos">
-      <rect height="12" rx="2.5" stroke="currentColor" strokeWidth="1.8" width="14" x="4" y="6" />
-      <path d="m11 10 4 2-4 2v-4Z" fill="currentColor" />
-    </PreviewIcon>,
-  ],
-  [
-    'Messages',
-    <PreviewIcon key="messages">
-      <path
-        d="M5 7.5A2.5 2.5 0 0 1 7.5 5h9A2.5 2.5 0 0 1 19 7.5v6A2.5 2.5 0 0 1 16.5 16H10l-4 3v-3.5A2.5 2.5 0 0 1 5 13V7.5Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.7"
-      />
-    </PreviewIcon>,
-  ],
-  [
-    'Contact',
-    <PreviewIcon key="contact">
-      <path
-        d="M8.5 6.5c.4-1 1.7-1.4 2.6-.8l1.4 1c.7.5 1 1.4.6 2.2l-.7 1.4a12.4 12.4 0 0 0 1.5 1.8 12.4 12.4 0 0 0 1.8 1.5l1.4-.7c.8-.4 1.8-.1 2.2.6l1 1.4c.6.9.2 2.2-.8 2.6l-1.6.6c-1 .4-2 .3-2.9-.2-2.1-1.2-4-2.7-5.7-4.4-1.7-1.7-3.2-3.6-4.4-5.7-.5-.9-.6-1.9-.2-2.9l.6-1.6Z"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="1.6"
-      />
-    </PreviewIcon>,
-  ],
-];
-
 export default function LoginPage({ onRequestAccess, onSignIn }) {
   const [form, setForm] = useState({ email: '', password: '' });
 
@@ -124,14 +23,6 @@ export default function LoginPage({ onRequestAccess, onSignIn }) {
               <span />
               <strong>PROTECTING THOSE WHO PROTECT US</strong>
               <span />
-            </div>
-            <div className="portal-preview-grid">
-              {previewItems.map(([label, icon]) => (
-                <div className="portal-preview" key={label}>
-                  {icon}
-                  <strong>{label}</strong>
-                </div>
-              ))}
             </div>
             <p className="auth-values">STRENGTH • UNITY • BROTHERHOOD</p>
           </section>
