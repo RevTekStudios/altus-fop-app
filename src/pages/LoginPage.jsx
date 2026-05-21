@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import Button from '../components/Button.jsx';
-import Card from '../components/Card.jsx';
 import DemoNotice from '../components/DemoNotice.jsx';
 import FopLogo from '../components/FopLogo.jsx';
+import altusPdPhoto from '../assets/photos/altus-pd.png';
 import { mockLogin } from '../services/authService.js';
 
 export default function LoginPage({ onRequestAccess, onSignIn }) {
@@ -99,23 +99,14 @@ export default function LoginPage({ onRequestAccess, onSignIn }) {
           </Button>
         </form>
 
-        <div className="login-mockup__flags" aria-hidden="true">
-          <span className="flag flag--one" />
-          <span className="flag flag--two" />
-        </div>
-
-        <div className="auth-panel__building" aria-hidden="true">
-          <div className="building building--left" />
-          <div className="building building--center">
-            <div className="building__sign">ALTUS FOP LODGE 120</div>
-          </div>
-          <div className="building building--right" />
+        <div className="login-photo" aria-hidden="true">
+          <img alt="" src={altusPdPhoto} />
         </div>
 
         <DemoNotice
           items={[
             'Login is visual only for this prototype and does not validate credentials.',
-            'Firebase Auth will replace this flow once the Altus FOP project is created.',
+            'Proper login/password handling will replace this flow once the Altus FOP project is created.',
           ]}
           title="Prototype Preview"
         />
