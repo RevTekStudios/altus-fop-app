@@ -1,0 +1,21 @@
+{
+  "name": "Altus FOP Lodge 120 Member Portal",
+  "short_name": "Altus FOP",
+  "description": "Prototype PWA for Altus FOP Lodge 120 member communications and lodge operations.",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#072e63",
+  "theme_color": "#072e63",
+  "icons": [
+    {
+      "src": "./icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "./icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
