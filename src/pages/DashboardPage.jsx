@@ -5,6 +5,7 @@ import Card from '../components/Card.jsx';
 import { mockAnnouncements } from '../data/mockAnnouncements.js';
 import { mockEvents } from '../data/mockEvents.js';
 import { mockVotes } from '../data/mockVotes.js';
+import fopLogo from '../assets/reference/FOP_Logo.png';
 
 function TileIcon({ children }) {
   return (
@@ -117,78 +118,83 @@ const tiles = [
 
 export default function DashboardPage() {
   const { currentUser, role, openAction, showToast } = useOutletContext();
-  const announcement = mockAnnouncements[0];
   const event = mockEvents[0];
   const vote = mockVotes[0];
+  const orderedAnnouncements = [...mockAnnouncements].sort((a, b) => {
+    if (a.isNew !== b.isNew) return a.isNew ? -1 : 1;
+    if (a.pinned !== b.pinned) return a.pinned ? -1 : 1;
+    return 0;
+  });
+  const latestAnnouncement = orderedAnnouncements[0];
+  const recentAnnouncements = orderedAnnouncements.slice(1, 4);
 
   return (
-    <div className="stack">
-      <div className="hero-grid">
-        <Card className="card--hero">
-          <div className="stack">
-            <div className="meta-row">
-              <Badge tone="highlight">Member Portal Prototype</Badge>
-              <Badge tone="info">{role === 'admin' ? 'Admin Preview' : 'Member Preview'}</Badge>
-            </div>
-            <h2 className="hero-title">Altus FOP Lodge 120</h2>
-            <p className="hero-copy">
-              A polished PWA foundation designed for announcements, lodge operations, resources,
-              internal communications, and future Firebase-backed workflows.
-            </p>
-            <div className="inline-actions">
-              <Button
-                onClick={() =>
-                  openAction(
-                    'Installable PWA Preview',
-                    'This build includes a manifest and service worker placeholder so install prompts and offline behavior can be added cleanly in the next phase.',
-                  )
-                }
-                variant="primary"
-              >
-                View PWA Status
-              </Button>
-              <Button onClick={() => showToast('Prototype notification preview refreshed.')}>
-                Refresh Preview
-              </Button>
-            </div>
+    <div className="stack dashboard-feed">
+      <Card className="dashboard-banner">
+        <div className="dashboard-banner__image" />
+        <div className="dashboard-banner__overlay">
+          <div className="dashboard-banner__brand">
+            <img alt="Altus FOP badge" src={fopLogo} />
           </div>
-        </Card>
+          <div className="dashboard-banner__message">
+            <p>STAY INFORMED.</p>
+            <p>STAY CONNECTED.</p>
+            <p>STAY STRONG.</p>
+          </div>
+        </div>
+      </Card>
 
-        <Card>
-          <div className="stack">
-            <div className="avatar-row">
-              <div className="avatar-badge">120</div>
-              <div>
-                <strong>{currentUser.displayName}</strong>
-                <p className="hero-copy">{currentUser.email}</p>
+      <Card className="dashboard-section">
+        <div className="section-title section-title--dashboard">
+          <h3>Latest Announcement</h3>
+          <Link className="dashboard-link" to="/announcements">
+            View All
+          </Link>
+        </div>
+        <div className="stack dashboard-latest">
+          <strong>{latestAnnouncement.title}</strong>
+          <p className="hero-copy">
+            {latestAnnouncement.body}
+          </p>
+          <p className="hero-copy">
+            {latestAnnouncement.date} • {latestAnnouncement.author}
+          </p>
+        </div>
+      </Card>
+
+      <Card className="dashboard-section">
+        <div className="section-title section-title--dashboard">
+          <h3>Recent Announcements</h3>
+          <Badge tone="highlight">{orderedAnnouncements.filter((item) => item.isNew).length} New</Badge>
+        </div>
+        <div className="dashboard-list">
+          {recentAnnouncements.map((announcement) => (
+            <Link className="dashboard-list-item" key={announcement.id} to="/announcements">
+              <div className="dashboard-list-item__icon" aria-hidden="true">
+                <svg fill="none" viewBox="0 0 24 24">
+                  <path
+                    d="M5 13.5V10.8c0-.5.4-.9.9-.9H8l5.9-2.9c.6-.3 1.3.1 1.3.8v8.4c0 .7-.7 1.1-1.3.8L8 14.1H5.9c-.5 0-.9-.4-.9-.9Z"
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="1.8"
+                  />
+                </svg>
               </div>
-            </div>
-            <div className="page-grid page-grid--two">
-              <div className="metric">
-                <strong>4</strong>
-                <span className="hero-copy">Active announcements</span>
+              <div className="dashboard-list-item__body">
+                <strong>{announcement.title}</strong>
+                <span>{announcement.date}</span>
               </div>
-              <div className="metric">
-                <strong>3</strong>
-                <span className="hero-copy">Unread messages</span>
-              </div>
-              <div className="metric">
-                <strong>1</strong>
-                <span className="hero-copy">Open vote</span>
-              </div>
-              <div className="metric">
-                <strong>2</strong>
-                <span className="hero-copy">Pending alerts</span>
-              </div>
-            </div>
-          </div>
-        </Card>
-      </div>
+              <span className="dashboard-list-item__chevron" aria-hidden="true">›</span>
+            </Link>
+          ))}
+        </div>
+      </Card>
 
       <Card>
-        <div className="section-title">
+        <div className="section-title section-title--dashboard">
           <h3>Quick Actions</h3>
-          <Badge tone="highlight">Mobile-ready navigation</Badge>
+          <Badge tone="highlight">Portal</Badge>
         </div>
         <div className="tile-grid">
           {tiles.map(([label, path, icon]) => (
@@ -200,18 +206,9 @@ export default function DashboardPage() {
         </div>
       </Card>
 
-      <div className="page-grid page-grid--three">
-        <Card>
-          <div className="section-title">
-            <h3>Latest Announcement</h3>
-            <Badge tone="success">{announcement.category}</Badge>
-          </div>
-          <strong>{announcement.title}</strong>
-          <p className="hero-copy">{announcement.body}</p>
-        </Card>
-
-        <Card>
-          <div className="section-title">
+      <div className="page-grid page-grid--two">
+        <Card className="dashboard-section">
+          <div className="section-title section-title--dashboard">
             <h3>Upcoming Event</h3>
             <Badge tone="info">{event.date}</Badge>
           </div>
@@ -222,21 +219,53 @@ export default function DashboardPage() {
           <p className="hero-copy">{event.description}</p>
         </Card>
 
-        <Card>
-          <div className="section-title">
-            <h3>Active Vote</h3>
+        <Card className="dashboard-section">
+          <div className="section-title section-title--dashboard">
+            <h3>Open Vote</h3>
             <Badge tone="highlight">{vote.status}</Badge>
           </div>
           <strong>{vote.title}</strong>
           <p className="hero-copy">{vote.deadline}</p>
           <div className="inline-actions">
             <Button onClick={() => showToast('Vote preview opened.')}>Preview</Button>
-            <Button onClick={() => openAction('Notifications', 'Mock member alerts are ready to connect to Firebase Cloud Messaging.')}>
+            <Button
+              onClick={() =>
+                openAction('Notifications', 'Mock member alerts are ready to connect to Firebase Cloud Messaging.')
+              }
+            >
               Alerts
             </Button>
           </div>
         </Card>
       </div>
+
+      <Card className="dashboard-section">
+        <div className="avatar-row">
+          <div className="avatar-badge">120</div>
+          <div>
+            <strong>{currentUser.displayName}</strong>
+            <p className="hero-copy">{currentUser.email}</p>
+          </div>
+        </div>
+        <div className="page-grid page-grid--two dashboard-metrics">
+          <div className="metric">
+            <strong>{orderedAnnouncements.length}</strong>
+            <span className="hero-copy">Active announcements</span>
+          </div>
+          <div className="metric">
+            <strong>3</strong>
+            <span className="hero-copy">Unread messages</span>
+          </div>
+          <div className="metric">
+            <strong>1</strong>
+            <span className="hero-copy">Open vote</span>
+          </div>
+          <div className="metric">
+            <strong>{role === 'admin' ? 'Admin' : 'Member'}</strong>
+            <span className="hero-copy">Status</span>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 }
